@@ -124,8 +124,8 @@ function onCardTokenizationFailed(error) {
 
 Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, onCardTokenized);
 function onCardTokenized(event) {
-  var el = document.querySelector(".success-payment-message");
-  el.innerHTML ="Completed";
+  // var el = document.querySelector(".success-payment-message");
+  // el.innerHTML ="Completed";
 
     makePayment(event)
 
@@ -166,10 +166,13 @@ function makePayment(state) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
             console.log(json);
-            if (json) {
+            if (json.status == 'Pending') {
+
+                location.replace(json._links.redirect.href)
 
             } else {
-                document.getElementById("resultCode").innerHTML = "Статус платежа: " + json.resultCode;
+                var el = document.querySelector(".success-payment-message");
+                el.innerHTML ="Completed";
 
             }
         }
