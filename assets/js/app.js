@@ -159,7 +159,7 @@ function makePayment(state) {
     state.amount = document.getElementById("amount").value;
 
     var xhr = new XMLHttpRequest();
-    var url = "/checkout.php";
+    var url = "checkout.php";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
